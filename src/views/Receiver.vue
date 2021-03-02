@@ -40,7 +40,8 @@
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue'
+import { computed, defineComponent, ref } from 'vue'
+import { useRoute } from 'vue-router'
 import Akkadu from '@akkadu/akkadu-rtc'
 
 import { toast } from '../utils'
@@ -52,6 +53,9 @@ export default defineComponent({
     const isStreaming = ref(false)
     const activeStream = ref('original')
     const isReady = ref(false)
+    const route = useRoute()
+
+    const room = computed(() => route.query.room)
 
     let akkaduActive = false
     let akkaduOnline = false
@@ -79,7 +83,7 @@ export default defineComponent({
 
     const initializeAkkadu = async () => {
       const config = {
-        roomName: 'nozj',
+        roomName: room.value || 'nozj',
         isDevMode: true
       }
 
