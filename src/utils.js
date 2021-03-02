@@ -1,4 +1,3 @@
-import { ref } from 'vue'
 
 const statuses = {
   error: 'red',
@@ -42,37 +41,4 @@ Object.keys(statuses).forEach(status => {
 
 export {
   toast
-}
-
-export const useVideo = (video) => {
-  const isVideoPlaying = ref(false)
-
-  async function playVideo () {
-    try {
-      await videoEl.value.play()
-    } catch (err) {
-      // Can fail gracefully
-    }
-  }
-
-  function togglePlayVideo () {
-    if (videoEl.value.paused) {
-      playVideo()
-    } else {
-      pauseVideo()
-    }
-  }
-
-  function pauseVideo () {
-    if (!videoEl.value.paused) {
-      videoEl.value.pause()
-    }
-  }
-
-  return {
-    videoEl,
-    playVideo,
-    pauseVideo,
-    togglePlayVideo
-  }
 }
